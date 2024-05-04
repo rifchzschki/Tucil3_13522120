@@ -21,13 +21,13 @@ public class Algorithm {
     }
 
     // calculate cost GBFS
-    public int costGBFS(Node currentNode, Node neighbor, boolean isFirst){
+    public int costGBFS(Node currentNode, String target, boolean isFirst){
         if(isFirst){
             return currentNode.getWord().length();
         }else{
             int dif=0;
             for (int i = 0; i < currentNode.getWord().length(); i++) {
-                if(currentNode.getWord().charAt(i)!=neighbor.getWord().charAt(i)){
+                if(currentNode.getWord().charAt(i)!=target.charAt(i)){
                     dif++;
                 }
             }
@@ -36,13 +36,13 @@ public class Algorithm {
     }
 
     // calculate cost
-    public int calculateCost(Node currentNode, NodeCostPair parent, Node neighbor, boolean isFirst){
+    public int calculateCost(Node currentNode, NodeCostPair parent, Node neighbor, String target, boolean isFirst){
         if(name.equalsIgnoreCase("gbfs")){
-            return costGBFS(currentNode, neighbor, isFirst);
+            return costGBFS(neighbor, target, isFirst);
         }else if(name.equalsIgnoreCase("ucs")){
             return costUCS(parent, isFirst);
         }else{
-            return costUCS(parent, isFirst) + costGBFS(currentNode, neighbor, isFirst);
+            return costUCS(parent, isFirst) + costGBFS(currentNode, target, isFirst);
         }
         
     }
@@ -57,13 +57,13 @@ public class Algorithm {
         }
         visited.add(startNode);
         for (Node node : startNode.getConnected()) {
-            int cost = calculateCost(node, null, null, true);
+            int cost = calculateCost(node, null, node, target, true);
             pQueue.add(new NodeCostPair(node, cost));
             parentMap.put(node, startNode);
         }
         while(!pQueue.isEmpty()){
             NodeCostPair current = pQueue.poll();
-            // System.err.println("current: "+ current.node.word+ ", cost: "+ current.cost);
+            // System.err.println("current: "+ current.getNode().getWord()+ ", cost: "+ current.getCost());
             if(visited.contains(current.getNode())){
                 continue;
             }
@@ -73,7 +73,7 @@ public class Algorithm {
                 return res;
             }
             for (Node node : current.getNode().getConnected()) {
-                int cost = calculateCost(current.getNode(), current, node, false);
+                int cost = calculateCost(current.getNode(), current, node, target, false);
                 pQueue.add(new NodeCostPair(node, cost));
                 if(!visited.contains(node) && parentMap.get(node)==null){
                     parentMap.put(node, current.getNode());

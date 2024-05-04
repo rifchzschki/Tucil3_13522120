@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -20,76 +22,114 @@ public class Main{
     }
 
     public static void run(){
-        String algo, lagi, start,target, path;
-        do{            
-            boolean onlyAlphabetic1;
-            boolean onlyAlphabetic2;
-            do{
-                System.out.print("Start : ");
-                start = scanner.nextLine();
-                System.out.print("Target : ");
-                target = scanner.nextLine();
+        String algo, lagi, start,target, path, filename, dict;
+        System.out.print("output file : ");
+        filename = scanner.nextLine();
+        System.out.println("dictionary : ");
+        System.out.println("1. Asistent");
+        System.out.println("2. Pribadi");
+        System.out.print("pilih: ");
+        dict = scanner.nextLine();
+        if(dict.equalsIgnoreCase("1")){
+            dict = "assistent";
+        }else{
+            dict = "prib";
+        }
+        try(FileWriter writer = new FileWriter("../test/"+filename+".txt")){
+            do{            
+                boolean onlyAlphabetic1,onlyAlphabetic2;
+                do{
+                    System.out.print("Start : ");
+                    start = scanner.nextLine();
+                    System.out.print("Target : ");
+                    target = scanner.nextLine();
+                    
+                    // Mengecek apakah string hanya mengandung karakter alfabet
+                    onlyAlphabetic1 = Pattern.matches("[a-zA-Z]+", start);
+                    onlyAlphabetic2 = Pattern.matches("[a-zA-Z]+", target);
+                    if(start.length()!=target.length() || (!onlyAlphabetic1 || !onlyAlphabetic2)){
+                        System.out.println("Masukkan string dengan panjang yang sesuai");
+                    }
+                }while(start.length()!=target.length() || (!onlyAlphabetic1 || !onlyAlphabetic2));
+                writer.write("Start : "+ start +"\n");
+                writer.write("Target : "+ target +"\n");
 
-                // Mengecek apakah string hanya mengandung karakter alfabet
-                onlyAlphabetic1 = Pattern.matches("[a-zA-Z]+", start);
-                onlyAlphabetic2 = Pattern.matches("[a-zA-Z]+", target);
-                if(start.length()!=target.length() || (!onlyAlphabetic1 || !onlyAlphabetic2)){
-                    System.out.println("Masukkan string dengan panjang yang sesuai");
-                }
-            }while(start.length()!=target.length() || (!onlyAlphabetic1 || !onlyAlphabetic2));
-            path = "../assets/Graph/"+ start.length() + ".txt";
+                // load graph
+                path = "../dict/"+dict+"/"+ start.length() + ".txt";
+                Graph graph = Graph.readFromCSV(path);
             
-            // load graph
-            Graph graph = Graph.readFromCSV(path);
-            
-            // mainkan
-            System.out.println("--------------------------------------");
-            System.out.println("Tersedia 3 Algoritma: ");
-            System.out.println("1. UCS (Uniform Cost Search)");
-            System.out.println("2. GBFS (Greedy Best-First Search)");
-            System.out.println("3. A* (Uniform Cost Search)");
-            do{
-                System.out.print("Pilih: ");
-                algo = scanner.nextLine();
-                algo = getAlgo(algo);
-                if(algo==null){
-                    System.out.println("Pilih algoritma yang tersedia!");
-                }
-            }while (algo==null);
-            System.out.println("--------------------------------------");
-            
-            
-            
-            Algorithm game = new Algorithm(algo);
-            long startTime = System.currentTimeMillis();
-            List<String> res = game.routeSearch(graph, start, target);
-            if(res != null){
-                System.out.println("---------------Jawaban---------------");
-                System.out.println("Rute: "+ res);
-                System.out.println("Banyak kata dikunjungi: "+ game.getVisitedList().size());
-                System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+                // mainkan
                 System.out.println("--------------------------------------");
-            }else{
-                System.out.println("-------Pencarian tidak ditemukan-------");
-                System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+                System.out.println("Tersedia 3 Algoritma: ");
+                System.out.println("1. UCS (Uniform Cost Search)");
+                System.out.println("2. GBFS (Greedy Best-First Search)");
+                System.out.println("3. A* (Uniform Cost Search)");
+                do{
+                    System.out.print("Pilih: ");
+                    algo = scanner.nextLine();
+                    algo = getAlgo(algo);
+                    if(algo==null){
+                        System.out.println("Pilih algoritma yang tersedia!");
+                    }
+                }while (algo==null);
+                writer.write("Algoritma : "+ algo +"\n");
                 System.out.println("--------------------------------------");
+            
+            
+            
+                Algorithm game = new Algorithm(algo);
+                long startTime = System.currentTimeMillis();
+                List<String> res = game.routeSearch(graph, start, target);
+                if(res != null){
+                    System.out.println("----------------Jawaban---------------");
+                    System.out.println("Rute: "+ res);
+                    System.out.println("Banyak step: "+ (res.size()-1));
+                    System.out.println("Banyak kata dikunjungi: "+ game.getVisitedList().size());
+                    System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+                    System.out.println("---------------------------------------");
+                    writer.write("----------------Jawaban---------------\n");
+                    writer.write("Rute: "+ res +"\n" );
+                    writer.write("Banyak step: "+ (res.size()-1)+"\n");
+                    writer.write("Banyak kata dikunjungi: "+ game.getVisitedList().size()+"\n");
+                    writer.write("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms"+"\n");
+                    writer.write("---------------------------------------\n");
+                    writer.write("\n");
+                }else{
+                    System.out.println("-------Pencarian tidak ditemukan-------");
+                    System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+                    System.out.println("--------------------------------------");
 
-            }
+                }
 
-            System.out.print("Lagi? (y/n): ");
-            lagi = scanner.nextLine();
-        }while(lagi.equalsIgnoreCase("y"));
+                System.out.print("Lagi? (y/n): ");
+                lagi = scanner.nextLine();
+            }while(lagi.equalsIgnoreCase("y"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         System.out.println("Terima Kasih sudah bermain...");
     }
 
     public static void scrap(){
         Integer num;
+        String dict;
         System.out.print("Jumlah suku kata: ");
         num = Integer.parseInt(scanner.nextLine());
 
-        List<String> lines = ReadFile.toList("../assets/Dict/Dict.txt");
+        System.out.println("dictionary : ");
+        System.out.println("1. Asistent");
+        System.out.println("2. Pribadi");
+        System.out.print("pilih: ");
+        dict = scanner.nextLine();
+        if(dict.equalsIgnoreCase("1")){
+            dict = "assistent";
+        }else{
+            dict = "prib";
+        }
+
+        List<String> lines = ReadFile.toList("../dict/"+dict+"/Dict.txt");
         Graph graph = Graph.buildGraph(num, lines);
-        graph.saveToCSV("../assets/Graph"+num+".txt");
+        graph.saveToCSV("../assets/Dict/"+num+".txt");
     }
 
     public static void main(String[] args) {

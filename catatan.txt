@@ -1,4 +1,4 @@
-gambaran kasar
+secercah pikiran
 
 kan kita punya graph yang isinya node
 
@@ -22,3 +22,22 @@ h(n) -> huruf yang berbeda,
 pilih node dengan cost paling kecil
 
 A* cost nya adalah hasil gabungan cost ucs dan gbfs
+
+
+Kesimpulan untuk laporan
+ucs - > dia akan mencari rute dengan cost seminimal mungkin, algoritma akan memilih node dengan cost(jarak ke startNode) 
+        paling minimal. Pada kasus ini cost adalah jarak yang ditempuh, maka akan dihasilkan path dengan jarak paling 
+        minimum
+
+gbfs -> menggunakan konsep greedy, heuristic yang dipakai adalah dengan menghitung jumlah karakter yang berbeda pada node 
+        dibandingkan dengan target. Algoritma akan mencari node mana yang memiliki jumlah perbedaan paling sedikit hingga 
+        pada akhirnya jumlah perbedaan itu menjadi 0 (sama). Akibatnya, algoritma ini memiliki kecepatan pencarian paling 
+        cepat dari ketiga algoritma. Akan tetapi rute yang dihasilkan terkadang memiliki jarak yang lebih jauh dari ucs.
+
+A*   -> ini menggabungkan konsep ucs dan gbfs. Algoritma ini akan memilih node dengan 
+        (jarak ke startNode + jumlah perbedaan karakter) paling minimal. Dengan begitu, kita akan bisa mengimbangi kekurangan
+        dari ucs (waktu) dan gbfs(panjang rute). Dengan menggunakan A* kita akan dapat menghasilkan rute dengan panjang minimum
+        serta waktu yang tidak selama UCS
+
+dengan menyimpan node penelusuran ke dalam prioritqueue, kita dapat dengan mudah memilih node dengan cost paling minimum.
+Tentunya dengan cost yang sudah kita sesuaikan untuk masing masing algoritma.

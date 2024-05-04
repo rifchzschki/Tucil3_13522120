@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Graph {
     Map<String, Node> nodes;
@@ -75,19 +77,29 @@ public class Graph {
     }
 
     public static Graph buildGraph(int length, List<String> dict){
-        Graph graph  = new Graph();
+        Graph graph = new Graph();
+        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+
         for (String word : dict) {
-            if(word.length()==length){
-                for (int i = 0; i < length; i++) {
-                    for (int alp = 0; alp < 26; alp++) {
-                        String current = word.substring(0, i) + (char) (97 + alp) + word.substring(i + 1);
-                        if(dict.contains(current) && !current.equalsIgnoreCase(word)){
-                            graph.add(word, current);
+            executor.execute(() -> {
+                if (word.length() == length) {
+                    for (int i = 0; i < length; i++) {
+                        for (int alp = 0; alp < 26; alp++) {
+                            String current = word.substring(0, i) + (char) (97 + alp) + word.substring(i + 1);
+                            if (dict.contains(current) && !current.equalsIgnoreCase(word)) {
+                                graph.add(word, current);
+                                System.out.println(word);
+                            }
                         }
                     }
                 }
-            }
-        }    
+            });
+        }
+
+        executor.shutdown();
+        while (!executor.isTerminated()) {
+            // Tunggu semua proses konkuren selesai
+        }
         return graph;
-    }
+    }   
 }
