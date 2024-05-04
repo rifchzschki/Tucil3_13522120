@@ -1,0 +1,24 @@
+gambaran kasar
+
+kan kita punya graph yang isinya node
+
+kita akan buat priority queue yang isinya costGraph(cost dan node dari graph)
+
+skemanya::
+-> pertama start node dan target node kita cari pake keyword yang dikasi, kalo ketemu lanjut kalo ngga munculin solusi tidak adad
+-> ketika lanjut, start node akan dimasukan ke list visited 
+-> dari start node nanti akan diambil neighhbors kemudian disimpan ke dalam priorityqueue dengan cost = cost saat ini+1
+-> setelah itu akan dicek mana node dengan cost terendah
+-> kita akan mengunjungi node tersebut
+-> cek apakah node tersebut adalah node target, jika ya return hasil, jika tidak lanjut
+-> masukan node ke list visited
+-> kumpulkan semua neighhbors dan masukkan ke priorityqueu beserta cost nya
+ulangi langkah hingga priorityqueue habis atau ditemukan solusi
+jika priorityqueue habis maka solusi tidak ditemukan
+
+
+oke sekarang kita mau buat gbfs
+h(n) -> huruf yang berbeda,
+pilih node dengan cost paling kecil
+
+A* cost nya adalah hasil gabungan cost ucs dan gbfs

@@ -1,33 +1,68 @@
-import java.util.ArrayList;
+
+
+
+// // Definisikan kelas Node
+// public class Node {
+//     private String kata;
+//     private List<Node> neighbors;
+
+//     // Konstruktor
+//     public Node(String kata) {
+//         this.kata = kata;
+//         this.neighbors = new ArrayList<>();
+//     }
+
+//     // Getter dan setter untuk kata
+//     public String getData() {
+//         return kata;
+//     }
+
+//     public void setData(String kata) {
+//         this.kata = kata;
+//     }
+
+//     // Getter untuk tetangga (neighbors)
+//     public List<Node> getNeighbors() {
+//         return neighbors;
+//     }
+
+//     // Method untuk menambahkan tetangga baru
+//     public void addNeighbor(Node neighbor) {
+//         this.neighbors.add(neighbor);
+//     }
+// }
+
 import java.util.List;
-
-// Definisikan kelas Node
+import java.util.ArrayList;
 public class Node {
-    private String kata;
-    private List<Node> neighbors;
+    private Node parent;
+    private String word;
+    private List<Node> connected;
 
-    // Konstruktor
-    public Node(String kata) {
-        this.kata = kata;
-        this.neighbors = new ArrayList<>();
+    public Node(String word) {
+        this.word = word;
+        this.connected = new ArrayList<>();
     }
 
-    // Getter dan setter untuk kata
-    public String getData() {
-        return kata;
+    public void addConnected(Node node) {
+        this.connected.add(node);
     }
 
-    public void setData(String kata) {
-        this.kata = kata;
+    // Metode untuk menetapkan parent dari node
+    public void setParent(Node parent) {
+        this.parent = parent;
     }
 
-    // Getter untuk tetangga (neighbors)
-    public List<Node> getNeighbors() {
-        return neighbors;
+    // Metode untuk mendapatkan parent dari node
+    public Node getParent() {
+        return parent;
     }
 
-    // Method untuk menambahkan tetangga baru
-    public void addNeighbor(Node neighbor) {
-        this.neighbors.add(neighbor);
+    public String getWord(){
+        return word;
+    }
+
+    public List<Node> getConnected(){
+        return connected;
     }
 }
