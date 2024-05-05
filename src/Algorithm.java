@@ -114,6 +114,10 @@ public class Algorithm {
         }
         return visitedList;
     }
+
+    public void addVisitedList(String word){
+        visited.add(new Node(word));
+    }
 }
 
 

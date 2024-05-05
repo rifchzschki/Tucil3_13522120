@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 
 public class Main{
     public static Scanner scanner = new Scanner(System.in);
@@ -19,6 +20,26 @@ public class Main{
             res = null;
         }
         return res;
+    }
+
+    public static void output(FileWriter writer, List<String> res, Algorithm game, long startTime){
+        System.out.println("----------------Jawaban---------------");
+        System.out.println("Rute: "+ res);
+        System.out.println("Banyak step: "+ (res.size()-1));
+        System.out.println("Banyak kata dikunjungi: "+ game.getVisitedList().size());
+        System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+        System.out.println("---------------------------------------");
+        try{
+            writer.write("----------------Jawaban---------------\n");
+            writer.write("Rute: "+ res +"\n" );
+            writer.write("Banyak step: "+ (res.size()-1)+"\n");
+            writer.write("Banyak kata dikunjungi: "+ game.getVisitedList().size()+"\n");
+            writer.write("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms"+"\n");
+            writer.write("---------------------------------------\n");
+            writer.write("\n");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public static void run(){
@@ -76,29 +97,26 @@ public class Main{
                 System.out.println("--------------------------------------");
             
             
-            
-                Algorithm game = new Algorithm(algo);
-                long startTime = System.currentTimeMillis();
-                List<String> res = game.routeSearch(graph, start, target);
-                if(res != null){
-                    System.out.println("----------------Jawaban---------------");
-                    System.out.println("Rute: "+ res);
-                    System.out.println("Banyak step: "+ (res.size()-1));
-                    System.out.println("Banyak kata dikunjungi: "+ game.getVisitedList().size());
-                    System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
-                    System.out.println("---------------------------------------");
-                    writer.write("----------------Jawaban---------------\n");
-                    writer.write("Rute: "+ res +"\n" );
-                    writer.write("Banyak step: "+ (res.size()-1)+"\n");
-                    writer.write("Banyak kata dikunjungi: "+ game.getVisitedList().size()+"\n");
-                    writer.write("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms"+"\n");
-                    writer.write("---------------------------------------\n");
-                    writer.write("\n");
-                }else{
-                    System.out.println("-------Pencarian tidak ditemukan-------");
-                    System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
-                    System.out.println("--------------------------------------");
+                if(!start.equalsIgnoreCase(target)){
 
+                    Algorithm game = new Algorithm(algo);
+                    long startTime = System.currentTimeMillis();
+                    List<String> res = game.routeSearch(graph, start, target);
+                    if(res != null){
+                        output(writer, res, game, startTime);
+                    }else{
+                        System.out.println("-------Pencarian tidak ditemukan-------");
+                        System.out.println("Durasi pencarian: "+ (System.currentTimeMillis()-startTime) + "ms");
+                        System.out.println("--------------------------------------");
+                        
+                    }
+                }else{
+                    long startTime = System.currentTimeMillis();
+                    List<String> res = new ArrayList<>();
+                    res.add(start);
+                    Algorithm game = new Algorithm(algo);
+                    game.addVisitedList(start);
+                    output(writer, res, game, startTime);
                 }
 
                 System.out.print("Lagi? (y/n): ");
