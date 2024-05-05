@@ -96,9 +96,11 @@ public class Main{
                 writer.write("Algoritma : "+ algo +"\n");
                 System.out.println("--------------------------------------");
             
-            
+                // Mendapatkan penggunaan memori saat ini
+                // Runtime runtime = Runtime.getRuntime();
+                
                 if(!start.equalsIgnoreCase(target)){
-
+                    
                     Algorithm game = new Algorithm(algo);
                     long startTime = System.currentTimeMillis();
                     List<String> res = game.routeSearch(graph, start, target);
@@ -118,7 +120,10 @@ public class Main{
                     game.addVisitedList(start);
                     output(writer, res, game, startTime);
                 }
-
+                
+                // hanya untuk pengecekan memori usage
+                // long memUsage = runtime.totalMemory() - runtime.freeMemory();
+                // System.out.println("Memory usage: " + memUsage + " bytes");
                 System.out.print("Lagi? (y/n): ");
                 lagi = scanner.nextLine();
             }while(lagi.equalsIgnoreCase("y"));
@@ -137,7 +142,7 @@ public class Main{
         System.out.println("dictionary : ");
         System.out.println("1. Asistent");
         System.out.println("2. Pribadi");
-        System.out.print("pilih: ");
+        System.out.print("pilih (1 atau 2): ");
         dict = scanner.nextLine();
         if(dict.equalsIgnoreCase("1")){
             dict = "assistent";
@@ -154,7 +159,7 @@ public class Main{
 
         boolean valid = true;
         do{
-            System.out.print("Masukkan perintah: ");
+            System.out.print("Masukkan perintah (Scrap atau Run): ");
             String inputString = scanner.nextLine();
             
             if(inputString.equalsIgnoreCase("Scrap")){

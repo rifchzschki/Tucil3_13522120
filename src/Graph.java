@@ -11,10 +11,12 @@ import java.util.concurrent.Executors;
 public class Graph {
     Map<String, Node> nodes;
 
+    // constructor
     public Graph() {
         this.nodes = new HashMap<>();
     }
 
+    // add connection two word and put in graph
     public void add(String word1, String word2) {
         Node node1 = this.nodes.getOrDefault(word1, new Node(word1));
         Node node2 = this.nodes.getOrDefault(word2, new Node(word2));
@@ -25,11 +27,12 @@ public class Graph {
         this.nodes.put(word2, node2);
     }
 
+    // getter nodes
     public Node get(String word) {
         return this.nodes.get(word);
     }
 
-    // Metode untuk menyimpan graf ke dalam file teks dalam format CSV
+    // save graph to txt file in csv format
     public void saveToCSV(String filename) {
         try (FileWriter writer = new FileWriter(filename)) {
             for (Map.Entry<String, Node> entry : nodes.entrySet()) {
@@ -44,7 +47,8 @@ public class Graph {
             e.printStackTrace();
         }
     }
-    // Untuk membaca graph
+
+    // load graph from txt
     public static Graph readFromCSV(String filename) {
         Graph graph = new Graph();
 
@@ -64,22 +68,11 @@ public class Graph {
         return graph;
     }
 
-    public void printGraph() {
-        for (Map.Entry<String, Node> entry : nodes.entrySet()) {
-            String word = entry.getKey();
-            Node node = entry.getValue();
-            System.out.print(word + " is connected to: ");
-            for (Node connectedNode : node.getConnected()) {
-                System.out.print(connectedNode.getWord() + " ");
-            }
-            System.out.println();
-        }
-    }
-
+    // build graph from dictionary
     public static Graph buildGraph(int length, List<String> dict){
         Graph graph = new Graph();
         ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
+        
         for (String word : dict) {
             executor.execute(() -> {
                 if (word.length() == length) {
@@ -102,4 +95,17 @@ public class Graph {
         }
         return graph;
     }   
+
+    // print graph for checking
+    public void printGraph() {
+        for (Map.Entry<String, Node> entry : nodes.entrySet()) {
+            String word = entry.getKey();
+            Node node = entry.getValue();
+            System.out.print(word + " is connected to: ");
+            for (Node connectedNode : node.getConnected()) {
+                System.out.print(connectedNode.getWord() + " ");
+            }
+            System.out.println();
+        }
+    }
 }

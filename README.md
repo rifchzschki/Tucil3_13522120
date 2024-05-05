@@ -1,29 +1,104 @@
 # Tucil3_13522120
 
-deskripsi
+Penyelesaian Permainan Word Ladder Menggunakan Algoritma UCS, Greedy Best First Search, dan A\*
 
-## What is UCS, BFS, A\*
+<p align="center">  
+   <img src="assets/word_ladder_title.jpg">
+</p>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
+## Algoritma yang Diimplementasikan
 
-Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+1. **Uniform Cost Search (UCS)**:
 
-Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.
+   - UCS adalah algoritma pencarian graf yang mencari solusi dengan cost terendah.
+   - Algoritma ini mengeksplorasi node berdasarkan cost yang diperlukan untuk mencapainya dari node awal.
+   - Pada kasus ini cost didefinisikan sebagai jarak dari current node ke start node
 
-Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor.
+2. **Greedy Best-First Search**:
 
-Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
+   - Greedy Best-First Search adalah algoritma pencarian graf yang memilih node yang paling dekat dengan node tujuan tanpa mempertimbangkan cost sebelumnya.
+   - Algoritma ini memprioritaskan node yang memiliki nilai fungsi evaluasi terendah, yang sering kali diukur dengan heuristik yang menghitung jarak estimasi dari node ke node tujuan.
+   - Pada kasus ini jarak terendah didefinisikan sebagai jumlah perbedaan karakter dari kata pada current node dengan kata pada target node
+
+3. **A\* (A-Star)**:
+   - A\* adalah algoritma pencarian graf yang menggabungkan konsep dari UCS dan Greedy Best-First Search.
+   - Algoritma ini mencari jalur dari node awal ke node tujuan dengan mempertimbangkan jarak dari node awal hingga node saat ini (cost aktual) ditambah dengan estimasi cost dari node saat ini ke node tujuan (heuristik) dalam hal ini adalah perbedaan karakter pada kata.
+   - A\* memilih node dengan cost terendah (cost aktual + heuristik) untuk dieksplorasi berikutnya.
 
 ## Prerequisite
 
-1. [Install anything](https://any/doc/install)
+Untuk menjalankan program ini, pastikan Anda telah menginstal Java Development Kit (JDK) di sistem operasi Anda.
+
+### Cara Menginstal Java di Windows
+
+> Berikut adalah langkah-langkah untuk menginstal Java di sistem operasi Windows:
+>
+> 1. **Unduh JDK**:
+>
+> - Kunjungi situs resmi Oracle Java di [Oracle JDK Downloads](https://www.oracle.com/java/technologies/javase-jdk15-downloads.html).
+> - Unduh JDK sesuai dengan versi Windows Anda (32-bit atau 64-bit).
+>
+> 2. **Instalasi JDK**:
+>
+> - Buka berkas instalasi yang sudah diunduh.
+> - Ikuti petunjuk instalasi yang muncul.
+> - Setelah instalasi selesai, buka Command Prompt (cmd) dan ketik perintah `java -version` untuk memastikan JDK terinstal dengan benar.
+
+## Cara Menginstal Java di Linux (Ubuntu/Debian)
+
+> Berikut adalah langkah-langkah untuk menginstal Java di sistem operasi Linux (Ubuntu/Debian):
+>
+> 1. **Buka Terminal**:
+>
+> - Buka Terminal di Ubuntu/Debian dengan menekan `Ctrl + Alt + T`.
+>
+> 2. **Instal OpenJDK**:
+>
+> - Ubuntu dan Debian biasanya menggunakan OpenJDK sebagai implementasi standar Java.
+> - Jalankan perintah berikut di Terminal untuk menginstal OpenJDK:
+>   ```
+>   sudo apt update
+>   sudo apt install default-jdk
+>   ```
+>
+> 3. **Verifikasi Instalasi**:
+>
+> - Setelah instalasi selesai, Anda dapat memeriksa versi Java yang terinstal dengan menjalankan perintah:
+>
+>   ```
+>   java -version
+>   ```
+>
+> - Jika instalasi berhasil, Anda akan melihat output yang menunjukkan versi JDK yang terinstal.
 
 ## Cara Mengkompilasi
 
-1. Bla bla bla
+1. Untuk windows
+
+   > lakukan build terlebih dahulu
 
    ```bash
-   java Main.java
+   cd src
+   ./scripts/build.ps1
+   ```
+
+   > run program
+
+   ```bash
+   cd src
+   ./scripts/run.ps1
+   ```
+
+2. Untuk Linux(Ubuntu/Debian)
+   >  lakukan build terlebih dahulu
+      ```bash
+      cd src
+      ./scripts/build.sh
+      ```
+   > run program
+   ```bash
+   cd src
+   ./scripts/run.sh
    ```
 
 ## Author

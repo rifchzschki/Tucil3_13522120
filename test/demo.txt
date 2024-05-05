@@ -1,0 +1,207 @@
+Start : lie
+Target : bed
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [lie, lee, bee, bed]
+Banyak step: 3
+Banyak kata dikunjungi: 286
+Durasi pencarian: 72ms
+---------------------------------------
+
+Start : lie
+Target : bed
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [lie, vie, vee, bee, bed]
+Banyak step: 4
+Banyak kata dikunjungi: 5
+Durasi pencarian: 10ms
+---------------------------------------
+
+Start : lie
+Target : bed
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [lie, lee, bee, bed]
+Banyak step: 3
+Banyak kata dikunjungi: 163
+Durasi pencarian: 22ms
+---------------------------------------
+
+Start : loch
+Target : ness
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [loch, loth, lots, lets, nets, ness]
+Banyak step: 5
+Banyak kata dikunjungi: 2012
+Durasi pencarian: 141ms
+---------------------------------------
+
+Start : loch
+Target : ness
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [loch, lech, pech, pecs, pets, 
+nets, ness]
+Banyak step: 6
+Banyak kata dikunjungi: 11
+Durasi pencarian: 5ms
+---------------------------------------
+
+Start : loch
+Target : ness
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [loch, loth, lots, lets, less, ness]
+Banyak step: 5
+Banyak kata dikunjungi: 561
+Durasi pencarian: 22ms
+---------------------------------------
+
+Start : start
+Target : break
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [start, stark, shark, shack, whack, 
+wrack, wreck, wreak, break]
+Banyak step: 8
+Banyak kata dikunjungi: 3655
+Durasi pencarian: 191ms
+---------------------------------------
+
+Start : start
+Target : break
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [start, stark, stork, stock, stick, 
+spick, speck, speak, steak, steal, sheal, 
+wheal, wheat, cheat, cleat, bleat, bleak, 
+break]
+Banyak step: 17
+Banyak kata dikunjungi: 39
+Durasi pencarian: 4ms
+---------------------------------------
+
+Start : start
+Target : break
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [start, stark, shark, shack, whack, 
+wrack, wreck, wreak, break]
+Banyak step: 8
+Banyak kata dikunjungi: 1551
+Durasi pencarian: 46ms
+---------------------------------------
+
+Start : glooms
+Target : belles
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [glooms, blooms, bloops, sloops, 
+stoops, strops, strips, scrips, scries, 
+series, serves, selves, selles, belles]
+Banyak step: 13
+Banyak kata dikunjungi: 3261
+Durasi pencarian: 136ms
+---------------------------------------
+
+Start : glooms
+Target : belles
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [glooms, blooms, brooms, brooks, 
+brocks, bricks, brinks, brines, brides, 
+bredes, breves, beeves, peeves, pelves, 
+selves, selles, belles]
+Banyak step: 16
+Banyak kata dikunjungi: 30
+Durasi pencarian: 14ms
+---------------------------------------
+
+Start : glooms
+Target : belles
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [glooms, blooms, bloops, sloops, 
+stoops, strops, strips, scrips, scries, 
+series, serves, selves, selles, belles]
+Banyak step: 13
+Banyak kata dikunjungi: 2408
+Durasi pencarian: 95ms
+---------------------------------------
+
+Start : costing
+Target : pretend
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [costing, coating, crating, grating, 
+grading, griding, priding, priming, primine, 
+promine, propine, propene, propend, protend, 
+pretend]
+Banyak step: 14
+Banyak kata dikunjungi: 3683
+Durasi pencarian: 173ms
+---------------------------------------
+
+Start : costing
+Target : pretend
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [costing, coating, crating, grating, 
+gracing, tracing, tricing, pricing, priming, 
+primine, promine, propine, propene, propend, 
+protend, pretend]
+Banyak step: 15
+Banyak kata dikunjungi: 738
+Durasi pencarian: 15ms
+---------------------------------------
+
+Start : costing
+Target : pretend
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [costing, coating, crating, grating, 
+grading, griding, griming, priming, primine, 
+promine, propine, propene, propend, protend, 
+pretend]
+Banyak step: 14
+Banyak kata dikunjungi: 2183
+Durasi pencarian: 143ms
+---------------------------------------
+
+Start : chanters
+Target : vaunters
+Algoritma : ucs
+----------------Jawaban---------------
+Rute: [chanters, chunters, shunters, 
+saunters, vaunters]
+Banyak step: 4
+Banyak kata dikunjungi: 61
+Durasi pencarian: 8ms
+---------------------------------------
+
+Start : chanters
+Target : vaunters
+Algoritma : gbfs
+----------------Jawaban---------------
+Rute: [chanters, chatters, chitters, 
+critters, fritters, flitters, slitters, 
+spitters, sputters, shutters, shunters, 
+saunters, vaunters]
+Banyak step: 12
+Banyak kata dikunjungi: 37
+Durasi pencarian: 3ms
+---------------------------------------
+
+Start : chanters
+Target : vaunters
+Algoritma : A*
+----------------Jawaban---------------
+Rute: [chanters, chunters, shunters, 
+saunters, vaunters]
+Banyak step: 4
+Banyak kata dikunjungi: 30
+Durasi pencarian: 2ms
+---------------------------------------
+

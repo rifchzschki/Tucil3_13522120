@@ -36,12 +36,4 @@ public class ReadFile {
         return lines;
 
     }
-    // public static void main(String[] args) {
-        
-    //     List<String> lines = ReadFile.toList("Dict.txt");
-    //     // Menampilkan isi list
-    //     for (String line : lines) {
-    //         System.out.println(line);
-    //     }
-    // }
 }
