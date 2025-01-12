@@ -1,4 +1,4 @@
-# Tucil3_13522120
+# Word Ladder Solver
 
 Penyelesaian Permainan Word Ladder Menggunakan Algoritma UCS, Greedy Best First Search, dan A\*
 
